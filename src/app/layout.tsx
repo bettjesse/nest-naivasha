@@ -4,8 +4,9 @@ import { Nunito } from 'next/font/google'
 import Navbar from './components/navbar/Navbar'
 import ClientOnly from './components/ClientOnly'
 import { Providers } from '@/redux/provider'
-import Modal from './components/modal/Modal'
-import UserList from './components/UserList'
+
+
+import RegisterModal from './components/modal/RegisterModal'
 
 const font = Nunito({ subsets: ['latin'] })
 
@@ -24,10 +25,10 @@ export default function RootLayout({
       <body className={font.className}>
         <Providers>
         <ClientOnly>
-         
+         <RegisterModal/>
       <Navbar/>
-      <Modal actionLabel="button"   title= "Naivasha Nest"/>
-      <UserList/>
+      
+      
 
       </ClientOnly>
         {children}

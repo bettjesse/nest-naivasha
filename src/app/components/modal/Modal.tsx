@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
 
+
 interface ModalProps {
   isOpen?: boolean;
   onClose: () => void;
@@ -30,6 +31,8 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const [showMOdal, setShowModal] = useState(isOpen);
 
+
+  
   useEffect(() => {
     setShowModal(isOpen);
   }, [isOpen]);
@@ -80,7 +83,9 @@ const Modal: React.FC<ModalProps> = ({
             <div className=" translate h-full  lg:h-auto md:h-auto border-0  rounded-lg shadow-lg  relative flex flex-col w-full bg-white outline-none focus:outline-none">
               {/* header */}
               <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
-                <button className="p-1 border-0  hover:opacity-70 transition absolute left-9">
+                <button 
+                onClick={handleClose}
+                className="p-1 border-0  hover:opacity-70 transition absolute left-9">
                   <IoMdClose size={18} />
                 </button>
                 <div className=" text-lg font-semibold">{title}</div>
