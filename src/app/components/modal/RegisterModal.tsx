@@ -6,7 +6,8 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch,useAppSelector } from "@/redux/hooks";
 import { closeModal } from "@/redux/slices/registerModalSlice";
 import Modal from "./Modal";
-
+import Heading from "../Heading";
+import Input from "../Inputs/Input";
 const RegisterModal = () => {
     const dispatch= useAppDispatch()
     const isOpen = useAppSelector((state) => state.registerModal.isOpen)
@@ -15,11 +16,7 @@ const RegisterModal = () => {
     dispatch(closeModal()); // Dispatch closeModal action to close the modal
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FieldValues>({
+  const { register, handleSubmit, formState: { errors }} = useForm<FieldValues>({
     defaultValues: { name: "", email: "", password: "" },
   });
 
@@ -35,6 +32,42 @@ const RegisterModal = () => {
     }
 
   }
+
+  const bodyContent = (
+    <div className=" flex flex-col gap-4">
+<Heading
+title=" Welcome to Nest Naivasha"
+subtitle=" Create an account"
+
+/>
+<Input
+id= "email"
+label="Email"
+disabled={isLoading}
+register={register}
+error={errors}
+required
+/>
+<Input
+id= "name"
+label="Name"
+disabled={isLoading}
+register={register}
+error={errors}
+required
+/>
+<Input
+id= "password"
+type="password"
+label="Password"
+disabled={isLoading}
+register={register}
+error={errors}
+required
+/>
+    </div>
+
+  )
   return (
     <Modal
     disabled={isLoading}
@@ -43,6 +76,7 @@ const RegisterModal = () => {
     onClose={handleOnClose }
     onSubmit={handleSubmit(onSubmit)}
     actionLabel="continue"
+    body={bodyContent}
 
     />
   )
