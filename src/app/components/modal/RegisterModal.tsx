@@ -10,6 +10,7 @@ import Heading from "../Heading";
 import Input from "../Inputs/Input";
 import { toast } from "react-hot-toast/headless";
 import Button from "../Button";
+import axios from "axios"
 const RegisterModal = () => {
     const dispatch= useAppDispatch()
     const isOpen = useAppSelector((state) => state.registerModal.isOpen)
@@ -22,13 +23,17 @@ const RegisterModal = () => {
     defaultValues: { name: "", email: "", password: "" },
   });
 
-  const onSubmit: SubmitHandler<FieldValues>= ()=> {
+// Use the useRegisterUserMutation hook
+
+  const onSubmit: SubmitHandler<FieldValues>= async(user)=> {
     setIsLoading(true)
+    
     try {
-        
+     await axios.post("/api/register", user)
         dispatch(closeModal());
     } catch (error) {
         toast.error("something went wrong")
+        console.log("error", error)
     } finally {
         setIsLoading(false)
     }
@@ -97,7 +102,7 @@ required
     title="Register"
     onClose={handleOnClose }
     onSubmit={handleSubmit(onSubmit)}
-    actionLabel="continue"
+    actionLabel={`${isLoading ? "loading" : "continue"}`}
     body={bodyContent}
     footer={footerContent}
 

@@ -1,22 +1,23 @@
+
 import { apiSlice } from './apiSlice';
 
-
 interface User {
-    id: number;
-    name: string;
-    email: number;
-  }
+  password: string;
+  name: string;
+  email: string;
+}
+type userResponse= User[]
 
 export const userApiSlice = apiSlice.injectEndpoints({
-    endpoints : (builder)=>({
-        getUser: builder.query<User[],null> ({
-            query:()=> ({
-                url: '/users',
-                method: 'GET',
-            })
-                        
-        })
-    })
-})
+  endpoints: (builder) => ({
+    registerUser: builder.mutation<userResponse,null >({
+      query: (user) => ({
+        url: '/register', // Change the URL to '/register' for registration endpoint
+        method: 'POST',   // Use POST method for registration
+        body: user,       // Send the user data in the request body
+      }),
+    }),
+  }),
+});
 
-export const {useGetUserQuery} = userApiSlice
+export const { useRegisterUserMutation } = userApiSlice;
