@@ -6,6 +6,7 @@ import ClientOnly from './components/ClientOnly'
 import { Providers } from '@/redux/provider'
 import RegisterModal from './components/modal/RegisterModal'
 import ToasterProvider from './providers/ToasterProvider'
+import LoginModal from './components/modal/LoginModal'
 
 const font = Nunito({ subsets: ['latin'] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <Providers>
         <ClientOnly>
           <ToasterProvider/>
+          <LoginModal/>
          <RegisterModal/>
       <Navbar/>
       

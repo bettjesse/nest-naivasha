@@ -4,15 +4,21 @@ import { useState ,useCallback} from "react";
 import MenuItem from "./MenuItem";
 
 import Avatar from "../Avatar";
-import { openModal } from "@/redux/slices/registerModalSlice";
+import { openRegisterModal} from "@/redux/slices/registerModalSlice";
+import { openLoginModal} from "@/redux/slices/loginModalSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 const UserMenu = () => {
   const dispatch= useAppDispatch()
   const [isOpen ,setIsOpen] = useState(false)
 
   const handleSignUpClick = ()=> {
-    dispatch(openModal())
+    dispatch(openRegisterModal())
   }
+  const handleLoginClick = ()=> {
+    dispatch(openLoginModal())
+  }
+
+
   const toggleIsOpen = ()=> {
     setIsOpen(!isOpen)
   }
@@ -43,7 +49,7 @@ const UserMenu = () => {
       <div className="absoulute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden text-sm right-0 top-12">
         <div className=" flex flex-col cursor-pointer">
 
-<MenuItem onclick={()=>{}} label="login"/>
+<MenuItem onclick={handleLoginClick} label="login"/>
 <MenuItem onclick={handleSignUpClick}label="Sign up"/>
         </div>
 

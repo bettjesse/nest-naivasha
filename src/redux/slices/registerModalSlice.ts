@@ -3,25 +3,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface RegisterModalState {
-  isOpen: boolean;
+  isRegisterModalOpen: boolean;
 }
 
 const initialState: RegisterModalState = {
-  isOpen: false,
+   isRegisterModalOpen: false,
 };
 
 const registerModalSlice = createSlice({
   name: 'registerModal',
   initialState,
   reducers: {
-    openModal: (state) => {
-      state.isOpen = true;
+    openRegisterModal: (state) => {
+      state. isRegisterModalOpen = true;
     },
-    closeModal: (state) => {
-      state.isOpen = false;
+    closeRegisterModal: (state) => {
+      state. isRegisterModalOpen = false;
     },
   },
 });
 
-export const { openModal, closeModal } = registerModalSlice.actions;
+export const { openRegisterModal, closeRegisterModal } = registerModalSlice.actions;
 export default registerModalSlice.reducer;
